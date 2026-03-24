@@ -1,0 +1,47 @@
+{
+  "name": "browserbeam",
+  "version": "0.1.0",
+  "description": "Official TypeScript SDK for the Browserbeam API — browser automation built for AI agents",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "browserbeam",
+    "browser",
+    "automation",
+    "ai",
+    "llm",
+    "scraping",
+    "api",
+    "headless"
+  ],
+  "author": "Browserbeam <hello@browserbeam.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nyku/browserbeam-js"
+  },
+  "homepage": "https://browserbeam.com",
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

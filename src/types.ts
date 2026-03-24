@@ -1,0 +1,200 @@
+export interface MarkdownContent {
+  content: string;
+  length?: {
+    shown: number;
+    total: number;
+  };
+}
+
+export interface InteractiveElement {
+  ref: string;
+  tag: string;
+  role?: string;
+  label: string;
+  value?: string;
+}
+
+export interface Changes {
+  content_changed: boolean;
+  content_delta?: string | null;
+  elements_added: Record<string, unknown>[];
+  elements_removed: Record<string, unknown>[];
+}
+
+export interface ScrollState {
+  y: number;
+  height: number;
+  viewport: number;
+  percent: number;
+}
+
+export interface PageState {
+  url: string;
+  title: string;
+  stable: boolean;
+  markdown?: MarkdownContent | null;
+  interactive_elements: InteractiveElement[];
+  forms: Record<string, unknown>[];
+  changes?: Changes | null;
+  scroll?: ScrollState | null;
+}
+
+export interface MediaItem {
+  type: "screenshot" | "pdf";
+  format: string;
+  data: string;
+}
+
+export interface StepError {
+  step: number;
+  action: string;
+  code:
+    | "element_not_found"
+    | "navigation_failed"
+    | "captcha_detected"
+    | "action_failed"
+    | "extract_failed"
+    | "invalid_request";
+  message: string;
+  context?: Record<string, unknown>;
+}
+
+export interface SessionEnvelope {
+  session_id: string;
+  expires_at: string;
+  request_id: string;
+  completed: number;
+  page: PageState | null;
+  media: MediaItem[];
+  extraction: Record<string, unknown> | null;
+  blockers_dismissed: string[];
+  error: StepError | null;
+}
+
+export interface SessionInfo {
+  session_id: string;
+  status: "active" | "closed";
+  started_at: string;
+  ended_at?: string | null;
+  duration_seconds?: number | null;
+  expires_at: string;
+}
+
+export interface SessionListItem {
+  session_id: string;
+  status: string;
+  started_at: string;
+}
+
+export interface SessionList {
+  sessions: SessionListItem[];
+  has_more: boolean;
+  next_cursor: string | null;
+}
+
+export type Step = Record<string, Record<string, unknown>>;
+
+export interface CreateSessionOptions {
+  url?: string;
+  steps?: Step[];
+  timeout?: number;
+  viewport?: { width?: number; height?: number };
+  user_agent?: string;
+  locale?: string;
+  timezone?: string;
+  proxy?: string;
+  block_resources?: ("image" | "font" | "media" | "stylesheet" | "script")[];
+  auto_dismiss_blockers?: boolean;
+  cookies?: Record<string, unknown>[];
+  idempotency_key?: string;
+}
+
+export interface ListSessionsOptions {
+  status?: "active" | "closed";
+  limit?: number;
+  after?: string;
+}
+
+export interface ClickOptions {
+  ref?: string;
+  text?: string;
+  label?: string;
+}
+
+export interface FillOptions {
+  value: string;
+  ref?: string;
+  label?: string;
+}
+
+export interface TypeOptions {
+  value: string;
+  label?: string;
+  ref?: string;
+  delay?: number;
+}
+
+export interface SelectOptions {
+  value: string;
+  label?: string;
+  ref?: string;
+}
+
+export interface CheckOptions {
+  label?: string;
+  ref?: string;
+  checked?: boolean;
+}
+
+export interface ScrollOptions {
+  to?: string;
+  direction?: string;
+  amount?: number;
+  times?: number;
+  ref?: string;
+}
+
+export interface ScrollCollectOptions {
+  max_scrolls?: number;
+  wait_ms?: number;
+  timeout_ms?: number;
+  max_text_length?: number;
+}
+
+export interface ScreenshotOptions {
+  full_page?: boolean;
+  format?: string;
+  quality?: number;
+  selector?: string;
+}
+
+export interface WaitOptions {
+  ms?: number;
+  selector?: string;
+  text?: string;
+  timeout?: number;
+}
+
+export interface ObserveOptions {
+  scope?: string;
+  format?: string;
+  include_links?: boolean;
+  max_text_length?: number;
+}
+
+export interface GotoOptions {
+  url: string;
+  wait_for?: string;
+  wait_timeout?: number;
+}
+
+export interface FillFormOptions {
+  fields: Record<string, string>;
+  submit?: boolean;
+}
+
+export interface PdfOptions {
+  format?: string;
+  landscape?: boolean;
+  print_background?: boolean;
+}

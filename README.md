@@ -5,13 +5,13 @@ Official TypeScript/Node.js SDK for the [Browserbeam API](https://browserbeam.co
 ## Installation
 
 ```bash
-npm install browserbeam
+npm install @browserbeam/sdk
 ```
 
 ## Quick Start
 
 ```typescript
-import Browserbeam from "browserbeam";
+import Browserbeam from "@browserbeam/sdk";
 
 const client = new Browserbeam({ apiKey: "sk_live_..." });
 const session = await client.sessions.create({ url: "https://example.com" });
@@ -90,7 +90,7 @@ await client.sessions.destroy("ses_abc123");
 ## Error Handling
 
 ```typescript
-import Browserbeam, { RateLimitError, SessionNotFoundError } from "browserbeam";
+import Browserbeam, { RateLimitError, SessionNotFoundError } from "@browserbeam/sdk";
 
 try {
   const session = await client.sessions.create({ url: "https://example.com" });

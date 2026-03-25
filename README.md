@@ -76,7 +76,7 @@ const session = await client.sessions.create({
 | `session.fillForm({ fields, submit })` | Fill and submit a form |
 | `session.wait({ ms })` | Wait for time, selector, or text |
 | `session.pdf()` | Generate a PDF |
-| `session.executeJs(expr)` | Run JavaScript |
+| `session.executeJs(code)` | Run JavaScript |
 | `session.close()` | Close the session |
 
 ## Session Management

@@ -124,25 +124,29 @@ export interface ClickOptions {
 export interface FillOptions {
   value: string;
   ref?: string;
+  text?: string;
   label?: string;
 }
 
 export interface TypeOptions {
   value: string;
-  label?: string;
   ref?: string;
+  text?: string;
+  label?: string;
   delay?: number;
 }
 
 export interface SelectOptions {
   value: string;
-  label?: string;
   ref?: string;
+  text?: string;
+  label?: string;
 }
 
 export interface CheckOptions {
-  label?: string;
   ref?: string;
+  text?: string;
+  label?: string;
   checked?: boolean;
 }
 
@@ -152,6 +156,8 @@ export interface ScrollOptions {
   amount?: number;
   times?: number;
   ref?: string;
+  text?: string;
+  label?: string;
 }
 
 export interface ScrollCollectOptions {
@@ -172,6 +178,7 @@ export interface WaitOptions {
   ms?: number;
   selector?: string;
   text?: string;
+  until?: string;
   timeout?: number;
 }
 
@@ -185,6 +192,7 @@ export interface ObserveOptions {
 export interface GotoOptions {
   url: string;
   wait_for?: string;
+  wait_until?: string;
   wait_timeout?: number;
 }
 
@@ -197,4 +205,19 @@ export interface PdfOptions {
   format?: string;
   landscape?: boolean;
   print_background?: boolean;
+  scale?: number;
+  margin?: { top?: string; right?: string; bottom?: string; left?: string };
+}
+
+export interface UploadOptions {
+  files: string[];
+  ref?: string;
+  text?: string;
+  label?: string;
+}
+
+export interface ExecuteJsOptions {
+  code: string;
+  result_key?: string;
+  timeout?: number;
 }

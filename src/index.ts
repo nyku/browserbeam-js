@@ -36,6 +36,8 @@ export type {
   GotoOptions,
   FillFormOptions,
   PdfOptions,
+  UploadOptions,
+  ExecuteJsOptions,
 } from "./types.js";
 
 export {

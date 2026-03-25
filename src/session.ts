@@ -14,6 +14,8 @@ import type {
   GotoOptions,
   FillFormOptions,
   PdfOptions,
+  UploadOptions,
+  ExecuteJsOptions,
   PageState,
   MediaItem,
   StepError,
@@ -133,16 +135,17 @@ export class Session {
     return this.act([{ fill_form: stripUndefined(opts) }]);
   }
 
-  async upload(ref: string, files: string[]): Promise<SessionEnvelope> {
-    return this.act([{ upload: { ref, files } }]);
+  async upload(opts: UploadOptions): Promise<SessionEnvelope> {
+    return this.act([{ upload: stripUndefined(opts) }]);
   }
 
   async pdf(opts: PdfOptions = {}): Promise<SessionEnvelope> {
     return this.act([{ pdf: stripUndefined(opts) }]);
   }
 
-  async executeJs(expression: string): Promise<SessionEnvelope> {
-    return this.act([{ execute_js: { expression } }]);
+  async executeJs(opts: string | ExecuteJsOptions): Promise<SessionEnvelope> {
+    const params = typeof opts === "string" ? { code: opts } : opts;
+    return this.act([{ execute_js: stripUndefined(params) }]);
   }
 
   async close(): Promise<SessionEnvelope> {

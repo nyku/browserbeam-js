@@ -4,6 +4,17 @@ All notable changes to the `@browserbeam/sdk` TypeScript SDK will be documented 
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.3.0] - 2026-03-27
+
+### Added
+
+- `Form` interface and export: `ref`, `id`, `action`, `method`, and `fields` (array of interactive element refs) aligned with the API’s enriched forms.
+- `InteractiveElement`: optional `in` (landmark), `near` (heading / section label), and `form` (parent form ref).
+
+### Changed
+
+- `PageState.forms` is now `Form[]` instead of `Record<string, unknown>[]`, matching the live API response shape.
+
 ## [0.2.0] - 2026-03-25
 
 ### Added
@@ -38,5 +49,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 - Session lifecycle: `close`
 - Dual format output: CJS and ESM builds with full `.d.ts` type declarations
 
+[0.3.0]: https://github.com/nyku/browserbeam-js/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/nyku/browserbeam-js/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/nyku/browserbeam-js/releases/tag/v0.1.0

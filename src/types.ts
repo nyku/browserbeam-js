@@ -12,6 +12,21 @@ export interface InteractiveElement {
   role?: string;
   label: string;
   value?: string;
+  /** Nearest semantic landmark (e.g. nav, main, form, dialog). */
+  in?: string;
+  /** Nearest heading text or section aria-label for disambiguation. */
+  near?: string;
+  /** Parent form ref from `page.forms` when the element is inside a form. */
+  form?: string;
+}
+
+export interface Form {
+  ref: string;
+  id: string | null;
+  action: string;
+  method: string;
+  /** Interactive element refs belonging to this form, in document order. */
+  fields: string[];
 }
 
 export interface Changes {
@@ -34,7 +49,7 @@ export interface PageState {
   stable: boolean;
   markdown?: MarkdownContent | null;
   interactive_elements: InteractiveElement[];
-  forms: Record<string, unknown>[];
+  forms: Form[];
   changes?: Changes | null;
   scroll?: ScrollState | null;
 }

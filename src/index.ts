@@ -16,6 +16,7 @@ export type {
   PageState,
   MarkdownContent,
   InteractiveElement,
+  MapEntry,
   Form,
   Changes,
   ScrollState,

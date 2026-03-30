@@ -63,7 +63,7 @@ const session = await client.sessions.create({
 | Method | Description |
 |--------|-------------|
 | `session.goto(url)` | Navigate to a URL |
-| `session.observe()` | Get page state as markdown |
+| `session.observe()` | Get page state as markdown. Supports `mode: "full"` for all sections. |
 | `session.click({ ref })` | Click an element by ref, text, or label |
 | `session.fill({ value, ref })` | Fill an input field |
 | `session.type({ value, label })` | Type text character by character |
@@ -78,6 +78,35 @@ const session = await client.sessions.create({
 | `session.pdf()` | Generate a PDF |
 | `session.executeJs(code)` | Run JavaScript |
 | `session.close()` | Close the session |
+
+## Page Map & Full Mode
+
+The first `observe` call automatically includes a `page.map` — a lightweight structural outline of the page's landmark regions (header, nav, main, aside, footer) with CSS selectors and descriptive hints. Use it to discover what content is available outside the main area.
+
+```typescript
+const res = await session.observe();
+console.log(res.page?.map);
+// [{ section: "nav", selector: "nav.top-nav", hint: "Home · Docs · Pricing" }, ...]
+```
+
+To re-request the map on subsequent calls:
+
+```typescript
+await session.observe({ include_page_map: true });
+```
+
+When you need content from **all** page sections (sidebars, footer links, nav items), use `mode: "full"`. The response markdown is organized by region headers:
+
+```typescript
+const full = await session.observe({ mode: "full", max_text_length: 20000 });
+// page.markdown.content contains:
+// ## [nav]
+// Home · Docs · Pricing
+// ## [main]
+// ...article content...
+// ## [aside]
+// Related posts · ...
+```
 
 ## Session Management
 

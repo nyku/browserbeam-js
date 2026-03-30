@@ -4,6 +4,15 @@ All notable changes to the `@browserbeam/sdk` TypeScript SDK will be documented 
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.4.0] - 2026-03-30
+
+### Added
+
+- `ObserveOptions.mode`: `"main"` (default) or `"full"` — full mode returns markdown from all page sections (nav, aside, footer, etc.) organized by region headers.
+- `ObserveOptions.include_page_map`: boolean to re-request the structural section map after the first auto-included observe.
+- `MapEntry` interface and export: `section`, `selector`, `hint` describing each page landmark.
+- `PageState.map`: optional `MapEntry[]` — the structural outline of page sections, auto-included on first observe.
+
 ## [0.3.0] - 2026-03-27
 
 ### Added
@@ -49,6 +58,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 - Session lifecycle: `close`
 - Dual format output: CJS and ESM builds with full `.d.ts` type declarations
 
+[0.4.0]: https://github.com/nyku/browserbeam-js/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/nyku/browserbeam-js/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/nyku/browserbeam-js/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/nyku/browserbeam-js/releases/tag/v0.1.0

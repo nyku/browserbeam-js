@@ -29,6 +29,12 @@ export interface Form {
   fields: string[];
 }
 
+export interface MapEntry {
+  section: string;
+  selector: string;
+  hint: string;
+}
+
 export interface Changes {
   content_changed: boolean;
   content_delta?: string | null;
@@ -48,6 +54,8 @@ export interface PageState {
   title: string;
   stable: boolean;
   markdown?: MarkdownContent | null;
+  /** Structural outline of page sections. Auto-included on first observe, or when `include_page_map: true`. */
+  map?: MapEntry[];
   interactive_elements: InteractiveElement[];
   forms: Form[];
   changes?: Changes | null;
@@ -200,6 +208,10 @@ export interface WaitOptions {
 export interface ObserveOptions {
   scope?: string;
   format?: string;
+  /** `"main"` (default) returns main content only. `"full"` returns all page sections organized by region headers. */
+  mode?: "main" | "full";
+  /** Include a section map in the response. Auto-included on first observe; set `true` to request again. */
+  include_page_map?: boolean;
   include_links?: boolean;
   max_text_length?: number;
 }

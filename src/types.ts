@@ -125,7 +125,7 @@ export interface CreateSessionOptions {
   user_agent?: string;
   locale?: string;
   timezone?: string;
-  proxy?: string;
+  proxy?: string | { kind: "datacenter" | "residential"; country?: string };
   block_resources?: ("image" | "font" | "media" | "stylesheet" | "script")[];
   auto_dismiss_blockers?: boolean;
   cookies?: Record<string, unknown>[];

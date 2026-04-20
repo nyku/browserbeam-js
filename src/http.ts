@@ -28,7 +28,7 @@ export class HttpClient {
     this.headers = {
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
-      "User-Agent": "browserbeam-js/0.1.0",
+      "User-Agent": "browserbeam-js/0.5.0",
     };
   }
 

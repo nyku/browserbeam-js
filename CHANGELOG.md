@@ -4,6 +4,19 @@ All notable changes to the `@browserbeam/sdk` TypeScript SDK will be documented 
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.5.0] - 2026-04-14
+
+### Added
+
+- Managed proxy support: `proxy` option now accepts an object `{ kind: "datacenter" | "residential", country?: string }` in addition to a BYO proxy URL string.
+- AI-powered selectors: use `"ai >> description"` syntax in `extract` schemas to target elements by natural-language description.
+
+### Changed
+
+- All sessions now route through a datacenter proxy by default (country auto-detected from URL TLD). No configuration needed.
+- Fixed stale `User-Agent` header (was `0.1.0`, now matches package version).
+- Updated README with managed proxy examples, `user_agent` option, and AI selector examples.
+
 ## [0.4.0] - 2026-03-30
 
 ### Added
@@ -58,6 +71,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 - Session lifecycle: `close`
 - Dual format output: CJS and ESM builds with full `.d.ts` type declarations
 
+[0.5.0]: https://github.com/nyku/browserbeam-js/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/nyku/browserbeam-js/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/nyku/browserbeam-js/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/nyku/browserbeam-js/compare/v0.1.0...v0.2.0

@@ -75,6 +75,8 @@ export interface StepError {
     | "element_not_found"
     | "navigation_failed"
     | "captcha_detected"
+    | "captcha_unsolvable"
+    | "access_denied"
     | "action_failed"
     | "extract_failed"
     | "invalid_request";
@@ -96,11 +98,15 @@ export interface SessionEnvelope {
 
 export interface SessionInfo {
   session_id: string;
-  status: "active" | "closed";
+  status: "active" | "closed" | "failed";
   started_at: string;
   ended_at?: string | null;
   duration_seconds?: number | null;
   expires_at: string;
+  /** Present when `status` is `"failed"`. Engine fatal error code (e.g. `access_denied`). */
+  error_code?: string | null;
+  /** Human-readable details when the session failed fatally. */
+  error_message?: string | null;
 }
 
 export interface SessionListItem {
@@ -133,7 +139,7 @@ export interface CreateSessionOptions {
 }
 
 export interface ListSessionsOptions {
-  status?: "active" | "closed";
+  status?: "active" | "closed" | "failed";
   limit?: number;
   after?: string;
 }

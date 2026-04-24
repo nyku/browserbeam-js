@@ -4,6 +4,14 @@ All notable changes to the `@browserbeam/sdk` TypeScript SDK will be documented 
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.6.0] - 2026-04-24
+
+### Added
+
+- `StepError.code` can include `captcha_unsolvable` and `access_denied` (fatal / unrecoverable conditions from the engine).
+- `SessionInfo`: `status` can be `"failed"`; optional `error_code` and `error_message` when a session was closed fatally.
+- `ListSessionsOptions.status` accepts `"failed"`.
+
 ## [0.5.0] - 2026-04-14
 
 ### Added

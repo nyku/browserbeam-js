@@ -135,9 +135,15 @@ const full = await session.observe({ mode: "full", max_text_length: 20000 });
 
 ## Session Management
 
+List sessions by status: `"active"`, `"closed"`, or `"failed"`. Failed sessions ended because of a fatal error (e.g. blocked by a proxy or unsolvable challenge); use `get` to read `error_code` and `error_message`.
+
 ```typescript
-const sessions = await client.sessions.list({ status: "active" });
+const active = await client.sessions.list({ status: "active" });
+const failed = await client.sessions.list({ status: "failed" });
 const info = await client.sessions.get("ses_abc123");
+if (info.status === "failed") {
+  console.error(info.error_code, info.error_message);
+}
 await client.sessions.destroy("ses_abc123");
 ```
 
